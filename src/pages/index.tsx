@@ -7,6 +7,8 @@ import { useQuery } from "@tanstack/react-query";
 import { RefreshCcw } from "lucide-react";
 import Link from "next/link";
 import useCardanoWallet from "use-cardano-wallet";
+import { create } from 'zustand';
+
 
 interface Proposal {
   title: string;
