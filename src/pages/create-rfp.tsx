@@ -26,24 +26,6 @@ const formSchema = z.object({
   deadline: z.date().min(new Date(), "Deadline must be in the future"),
 });
 
-export async function createProposal(
-  address: string,
-  title: string,
-  description: string,
-  deadline: Date,
-  amount: bigint,
-  api: any
-) {
-  if (!deadline || !(deadline instanceof Date)) {
-    throw new Error("Invalid deadline provided");
-  }
-
-  const zeroTime = deadline.setHours(0, 0, 0, 0); // Ensure this line is safe
-  console.log("Zero time:", zeroTime);
-
-  // ...rest of the function
-}
-
 export default function CreateRfpPage() {
   const { api, address } = useCardanoWallet();
   const { toast } = useToast();
@@ -59,8 +41,6 @@ export default function CreateRfpPage() {
 
       const { title, description, amount, deadline } = values;
 
-      console.log("Submitting values:", { title, description, amount, deadline });
-
       await createProposal(
         address,
         title,
@@ -71,7 +51,7 @@ export default function CreateRfpPage() {
       );
     },
     onError: (error) => {
-      console.error("Error during mutation:", error);
+      console.error(error);
       form.setError("root", {
         message: "An error occurred while creating the RFP",
       });
@@ -160,7 +140,7 @@ export default function CreateRfpPage() {
                 <FormLabel className="block mb-2">Deadline</FormLabel>
                 <FormControl>
                   <DateTimePicker
-                    value={field.value || new Date()} // Default to the current date if undefined
+                    value={field.value}
                     onChange={field.onChange}
                   />
                 </FormControl>
