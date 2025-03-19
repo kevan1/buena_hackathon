@@ -159,7 +159,7 @@ export default function CreateRfpPage() {
               {form.formState.errors.root.message}
             </p>
           )}
-          <Button type="submit" isLoading={isPending}>
+          <Button type="submit" disabled={isPending}>
             Create RFP
           </Button>
         </form>
