@@ -8,6 +8,7 @@ import { RefreshCcw } from "lucide-react";
 import Link from "next/link";
 import useCardanoWallet from "use-cardano-wallet";
 import { create } from 'zustand';
+import { MobileWarning } from "@/components/mobile-warning";
 
 
 interface Proposal {
@@ -70,6 +71,7 @@ export default function Home() {
 
   return (
     <div className="mt-10">
+      <MobileWarning />
       <div className="flex items-center justify-between w-full mb-8">
         <h1 className="font-bold text-2xl ">Browse RFPs</h1>
 
